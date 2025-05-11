@@ -17,19 +17,19 @@ mongoose.connect("mongodb://127.0.0.1:27017").then(() => {
 const WorkexperienceSchema = new mongoose.Schema({
     companyname: {
         type: String, 
-        required: true,
+        required: [true, "Du måste skicka med vad företaget heter"]
     },
     task: {
         type: String,
-        required: true,
+        required: [true, "Du måste skicka med vad du jobbade med"]
     },
     city: {
         type: String,
-        required: true,
+        required: [true, "Du måste skicka med i vilken stad du jobbade"]
     },
     howlong: {
         type: Number,
-        required: true,
+        required: [true, "Du måste skicka med hur länge du jobbade"]
     }
 });
 
@@ -38,22 +38,17 @@ const Workexperience = mongoose.model("Workexperience", WorkexperienceSchema);
 app.use(cors());
 app.use(express.json());
 
-app.get("/api", async (req, res) => {
-    res.json({ message: "Welcommen!" });
-})
-
 app.get("/workexperience", async (req, res) => {
     try {
         let result = Workexperience.find({});
 
         return res.json(result);
-        
     } catch(error) {
         return res.status(500).json(error);
     }
 });
 
-app.get("/workexperience", async (req, res) => {
+app.post("/workexperience", async (req, res) => {
     try {
         let result = Workexperience.create(req.body)
 
@@ -62,7 +57,23 @@ app.get("/workexperience", async (req, res) => {
     } catch(error) {
         return res.status(400).json(error);
     }
+});
 
+app.put("/workexperience/:id", async (req, res) => {
+    try {
+
+
+    } catch(error) {
+        return res.status(400).json(error);
+    }
+});
+
+app.delete("/workexperience/:id", async (req, res) => {
+    try {
+        
+    } catch(error) {
+        return res.status(400).json(error);
+    }
 })
 
 app.listen(port, () => {
