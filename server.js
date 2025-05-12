@@ -35,6 +35,7 @@ const WorkexperienceSchema = new mongoose.Schema({
     howlongM: {
         type: Number,
         required: true,
+        // Validerar månader med min och max. Månaderna får inte vara negativt såklart, men inte över 11 heller, då ska istället år ändras.
         min: [0, "Mellan 0 och 11 gäller! Ändra antalet ÅR om du har under 0 månader här."],
         max: [11, "Mellan 0 och 11 gäller! Ändra antalet ÅR om du har över 11 månader här."]
     }
